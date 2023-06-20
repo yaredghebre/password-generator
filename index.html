@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- VueJS -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css    ">
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="style.css">
+    <title>**Password Generator**</title>
+</head>
+<body>
+    <div id="app" class="vh-100 bg-dark p-5">
+        <!-- HEADER -->
+        <header>
+            <h1 class="text-center display-1 mt-5 mb-5 text-white">Password Generator</h1>
+            <p class="text-center display-5 mb-5 text-white">Genera una <span class="text-danger">password</span> sicura</p>
+        </header>
+
+        <!-- MAIN -->
+        <main>
+            <section class="container">
+                <div class="row flex-column text-white fs-5 p-4 g-3">
+                    <!-- Alert Box -->
+                    <div v-if="showAlertBox" class="alert-box col border border-white rounded bg-info p-4">
+                        <p class="text-dark">Nessun parametro valido inserito!</p>
+                    </div>
+                    
+                    <!-- Input Box -->
+                    <div class="input-box flex-column col border border-white rounded p-4 bg-white text-dark">
+                        <form>
+
+                            <div class="form-group row mb-5">
+                              <label for="inputPassword3" class="col-sm-3 col-form-label">Lunghezza Password:</label>
+                              <div class="col-sm-6 d-flex">
+                                <input v-model="passwordLength" type="number" min="6" max="12" class="form-control w-50 mr-5" id="inputPassword3" placeholder="Inserisci il numero di caratteri">
+                                <div v-show="showPassword" class="w-50 border border-dark bg-info ml-5">{{password}}</div>
+                              </div>
+                            </div>
+
+                            <fieldset class="form-group mb-5">
+                              <div class="row">
+                                <legend class="col-form-label col-sm-6 pt-0">Consenti ripetizioni di uno o più caratteri:</legend>
+                                <div class="col-sm-6">
+                                  <div class="form-check">
+                                    <input v-model="allowReps" class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                                    <label class="form-check-label" for="gridRadios1">
+                                      Si
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input v-model="allowReps" class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                                    <label class="form-check-label" for="gridRadios2">
+                                       No
+                                    </label>
+                                  </div>
+                                </div>
+                              </div>
+                            </fieldset>
+                            
+                            <div class="form-group row mb-5">
+                              <div class="col-sm-6">Consenti inserimento di:</div>
+                              <div class="col-sm-6">
+                                <div class="form-check">
+                                    <input v-model="allowLetters" class="form-check-input" type="checkbox" id="gridCheck1">
+                                    <label class="form-check-label" for="gridCheck1">
+                                      Lettere
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input v-model="allowNumbers" class="form-check-input" type="checkbox" id="gridCheck2">
+                                    <label class="form-check-label" for="gridCheck2">
+                                        Numeri
+                                    </label>
+                                  </div>
+                                  <div class="form-check">
+                                    <input v-model="allowSymbols" class="form-check-input" type="checkbox" id="gridCheck3">
+                                    <label class="form-check-label" for="gridCheck3">
+                                      Simboli
+                                    </label>
+                                  </div>
+                              </div>
+                            </div>
+                            <div class="form-group row">
+                              <div class="col-sm-10">
+                                <button @click="generatePassword()" type="button" class="btn btn-primary m-1">Invia</button>
+                                <button type="submit" class="btn btn-secondary m-1">Annulla</button>
+                              </div>
+                            </div>
+                          </form>              
+                    </div>
+                </div>
+            </section>
+
+
+        </main>
+   </div> 
+    <script src="script.js"></script>
+</body>
+</html>
